@@ -1,6 +1,11 @@
 // Получаем ссылку на кнопку и поле ввода
 const button = document.getElementById('buttonSend');
 const input = document.getElementById('input');
+const purseLink = document.getElementById('purseLink');
+
+purseLink.addEventListener('click', () => {
+    loadContent('purse_client.php');
+});
 
 // Функция обработки нажатия на кнопку
 button.addEventListener('click', () => {
@@ -39,21 +44,16 @@ button.addEventListener('click', () => {
 
      //Отправляем запрос с данными
     xhr.send('data=' + encodeURIComponent(data));
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 3) {
-    //         console.log("Download in process\n")
-    //     }
-    //     if (xhr.readyState ===4) {
-    //         console.log("Downloaded \n ")
-    //     }
-    // }
 
-    // xhr.onload = function () {
-    //     if (xhr.status != 200) {
-    //         console.log(`Error ${xhr.status}: ${xhr.statusText}`);
-    //     }else {
-    //         console.log(`Done, keep ${xhr.response.length} byte`);
-    //     }
-    // }
-    // xhr.timeout = 2000;
 });
+
+function loadContent(menu_url) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("main").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", menu_url, true);
+    xhttp.send();
+}
