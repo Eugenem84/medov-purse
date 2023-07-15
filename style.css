@@ -1,0 +1,22 @@
+#input {
+    font-size: 100%;
+    width: 700px;
+}
+
+#inputDiv{
+    font-size: 150%;
+}
+
+#buttonSend {
+    top: 20px;
+    font-size: 100%;
+}
+
+#response {
+    font-size: 130%;
+    border: black;
+    text-align: left;
+    color: black;
+    width: 800px;
+    height: 50px;
+}
