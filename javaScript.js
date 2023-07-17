@@ -4,9 +4,27 @@
 const purseLink = document.getElementById('purseLink');
 const mainDiv = document.getElementById('main');
 
+//функция печати сообщения в диве с ответом
+function DisplayMessage (message) {
+    let responseDiv = document.getElementById('response')
+    let redirectionMessage = document.createElement('div')
+    redirectionMessage.id = "redirectionMessage";
+    redirectionMessage.style.display = "flex";
+    redirectionMessage.style.justifyContent = "center";
+    redirectionMessage.style.alignItems = "center";
+    responseDiv.innerHTML = ""
+    redirectionMessage.innerHTML = message;
+    responseDiv.appendChild(redirectionMessage);
+}
+
 mainDiv.addEventListener('click' , function (event) {
     if (event.target.id === 'buttonSend') {
         const input = document.getElementById('input');
+        if (input === false) {
+            DisplayMessage("you must put link into field below")
+        }
+        DisplayMessage('ok checking in process')
+        console.log('ok checking')
         // Получаем значение из поля ввода
         const data = input.value;
 
@@ -27,13 +45,13 @@ mainDiv.addEventListener('click' , function (event) {
                     const response = JSON.parse(xhr.responseText);
                     console.log("RESPONSE:  \n", response);
                     displayResponse(response)
+                }else if (xhr.status === 504) {
+                    //сообщение если нет ответа
+                    DisplayMessage('time is out, server was not request')
                 } else {
                     console.error('Произошла ошибка при выполнении запроса.');
-                    //пока не знаю как проверить участок кода
-                    let responseDiv = document.getElementById('response')
-                    let redirectionMessage = document.createElement('div')
-                    redirectionMessage.id = "redirectionMessage"
-                    redirectionMessage.innerHTML = "redirection to: "
+                    //сообщение ошибки запроса
+                    DisplayMessage("error of performance request")
                 }
             }
         };
@@ -42,8 +60,9 @@ mainDiv.addEventListener('click' , function (event) {
             //получаем окно вывода
             let responseDiv = document.getElementById('response')
             // очищаем окно вывода
-            responseDiv.innerHTML = ""
+            DisplayMessage("Done")
             for (let i = 0; i < result.length; i++) {
+                console.log("done")
                 let redirectionMessage = document.createElement('div')
                 redirectionMessage.id = "redirectionMessage"
                 redirectionMessage.innerHTML = "redirection to: "
