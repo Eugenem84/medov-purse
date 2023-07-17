@@ -1,6 +1,18 @@
 <?php
 //echo "ok \n" . "<br>";
 $resURLs = [];
+
+function answerURL ($answerString) {
+    header('Content-Type: application/json');
+    $answerJson = json_encode($answerString);
+    echo $answerJson;
+}
+
+function answerMessage ($answerString) {
+    header('Content-Type: text/plain');
+    $answerJson = json_encode($answerString);
+    echo $answerJson;
+}
 function check_redirection($url)
 {
     global $resURLs;
@@ -18,36 +30,49 @@ function check_redirection($url)
                 array_push($URLs, $rediracted_url);
                 check_redirection($rediracted_url);
                 $resURLs = $URLs;
+                answerURL($resURLs);
                 break;
             }
         }
+    } else if ($httpCode === 500) {
+        answerMessage("Internal Server Error");
+    } else if ($httpCode === 404) {
+        answerMessage("Not Found");
+    } else if ($httpCode === 403) {
+        answerMessage("Forbidden:");
+    } else if ($httpCode === 400) {
+        answerMessage("Bad Request");
+    } else if ($httpCode === 200) {
+        answerMessage("link is not redirected");
     } else {
-        //header('Content-Type: application/json');
-        answerMessage("link is not redirect");
-        //echo "Ссылка не переадресуется";
+        answerMessage("i d't no what's going on");
     }
 }
 
-function answerURL ($answerString) {
-    header('Content-Type: application/json');
-    $answerJson = json_encode($answerString);
-    echo $answerJson;
-}
-
-function answerMessage ($answerString) {
-    header('Content-Type: text/plain');
-    $answerJson = json_encode($answerString);
-    echo $answerJson;
-}
+//function answerURL ($answerString) {
+//    header('Content-Type: application/json');
+//    $answerJson = json_encode($answerString);
+//    echo $answerJson;
+//}
+//
+//function answerMessage ($answerString) {
+//    header('Content-Type: text/plain');
+//    $answerJson = json_encode($answerString);
+//    echo $answerJson;
+//}
 
 //прием
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = trim($_POST['data']);
     check_redirection($message);
-    answerURL($resURLs);
+//    if (!empty($resURLs)) {
+//        answerURL($resURLs);
+//    } else {
+//        answerMessage("link is not redirection");
+//    }
 } else {
-    echo "data was not keep \n";
+    answerMessage("data was not keep \n");
 }
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die("Метод POST ожидается\n");
+    answerMessage("POST is waiting\n");
 }

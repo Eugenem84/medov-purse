@@ -43,12 +43,20 @@ mainDiv.addEventListener('click' , function (event) {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    const contentType = xhr.getResponseHeader('Content-Type')
+                    const contentType = xhr.getResponseHeader('Content-Type');
                     // Получаем ответ от сервера
-                    const response = JSON.parse(xhr.responseText);
-                    console.log("RESPONSE:  \n", response);
-                    displayResponse(response)
-                    console.log('Content-Type: ' + contentType)
+                    if (contentType === 'application/json') {
+                        const response = JSON.parse(xhr.responseText);
+                        console.log("RESPONSE:  \n", response);
+                        displayResponse(response)
+                        console.log('Content-Type: ' + contentType)
+                    } else {
+                        //console.log('else')
+                        //обрабатываем как простой текст
+                        const responseTxt = xhr.responseText;
+                        console.log('RESPONSE: ', responseTxt);
+                        DisplayMessage(responseTxt)
+                    }
                 }else if (xhr.status === 504) {
                     //сообщение если нет ответа
                     DisplayMessage('time is out, server was not request')
