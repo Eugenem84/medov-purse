@@ -85,6 +85,11 @@
     font-size: 110%;
     background-color: #b2b2b2;
     height: auto;
-    width: auto;
+    width: 90%;
     margin: 10px;
+}
+
+#redirectionMessage {
+    margin-top: 5px;
+    margin-left: 5px;
 }
