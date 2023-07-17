@@ -30,7 +30,6 @@ function check_redirection($url)
                 array_push($URLs, $rediracted_url);
                 check_redirection($rediracted_url);
                 $resURLs = $URLs;
-                answerURL($resURLs);
                 break;
             }
         }
@@ -49,27 +48,17 @@ function check_redirection($url)
     }
 }
 
-//function answerURL ($answerString) {
-//    header('Content-Type: application/json');
-//    $answerJson = json_encode($answerString);
-//    echo $answerJson;
-//}
-//
-//function answerMessage ($answerString) {
-//    header('Content-Type: text/plain');
-//    $answerJson = json_encode($answerString);
-//    echo $answerJson;
-//}
-
 //прием
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = trim($_POST['data']);
     check_redirection($message);
-//    if (!empty($resURLs)) {
-//        answerURL($resURLs);
-//    } else {
-//        answerMessage("link is not redirection");
-//    }
+    if (!empty($resURLs)) {
+        answerURL($resURLs);
+    } else if ($resURLs[0] = $message) {
+        answerMessage("link is not redirection");
+    } else {
+        answerMessage("something else going on");
+    }
 } else {
     answerMessage("data was not keep \n");
 }

@@ -25,7 +25,7 @@ mainDiv.addEventListener('click' , function (event) {
             DisplayMessage("you must put link into field below")
             return
         }
-        DisplayMessage('ok checking in process')
+        DisplayMessage('ok checking in process...')
         console.log('ok checking')
         // Получаем значение из поля ввода
         const data = input.value;
