@@ -16,12 +16,14 @@ function DisplayMessage (message) {
     redirectionMessage.innerHTML = message;
     responseDiv.appendChild(redirectionMessage);
 }
-
+//отправка сообщения с инпута
 mainDiv.addEventListener('click' , function (event) {
     if (event.target.id === 'buttonSend') {
         const input = document.getElementById('input');
-        if (input === false) {
+        if (input.value === '') {
+            //похоже что не срабатывает тут ?
             DisplayMessage("you must put link into field below")
+            return
         }
         DisplayMessage('ok checking in process')
         console.log('ok checking')
@@ -41,10 +43,12 @@ mainDiv.addEventListener('click' , function (event) {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
+                    const contentType = xhr.getResponseHeader('Content-Type')
                     // Получаем ответ от сервера
                     const response = JSON.parse(xhr.responseText);
                     console.log("RESPONSE:  \n", response);
                     displayResponse(response)
+                    console.log('Content-Type: ' + contentType)
                 }else if (xhr.status === 504) {
                     //сообщение если нет ответа
                     DisplayMessage('time is out, server was not request')

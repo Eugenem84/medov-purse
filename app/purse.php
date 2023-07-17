@@ -22,20 +22,29 @@ function check_redirection($url)
             }
         }
     } else {
-        echo "Ссылка не переадресуется";
+        //header('Content-Type: application/json');
+        answerMessage("link is not redirect");
+        //echo "Ссылка не переадресуется";
     }
 }
 
+function answerURL ($answerString) {
+    header('Content-Type: application/json');
+    $answerJson = json_encode($answerString);
+    echo $answerJson;
+}
+
+function answerMessage ($answerString) {
+    header('Content-Type: text/plain');
+    $answerJson = json_encode($answerString);
+    echo $answerJson;
+}
+
+//прием
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = trim($_POST['data']);
-    if ($message === "") {
-        echo "url form is empty \n";
-    } else {
-        check_redirection($message);
-        $jsonURLs = json_encode($resURLs);
-        header('Content-Type: application/json');
-        echo $jsonURLs;
-    }
+    check_redirection($message);
+    answerURL($resURLs);
 } else {
     echo "data was not keep \n";
 }
