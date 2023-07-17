@@ -1,6 +1,9 @@
  <div id="inputDiv">
-        <label for="input">some text enter hea!r!: for checking https://clck.ru/34tgru</label><br>
-        <input type="text" id="input"><br>
-        <button id="buttonSend">send</button>
+     <div id="invitation">Enter link hear for checking redirection:<br> Example: https://clck.ru/34tgru</div>
+     <label for="input"></label><br>
+     <input type="text" id="input">
+     <br>
+     <button id="buttonSend">check this</button>
+     <br>
  </div>
- <div id="response">response: </div>
+ <div id="response"></div>

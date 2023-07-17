@@ -6,9 +6,21 @@
     border-bottom: black solid 3px;
 }
 
+#inputDiv {
+    text-align: center;
+}
+
+#invitation {
+    margin: 10px;
+    text-align: center;
+    height: 50px;
+    width: auto;
+}
+
 #input {
+    text-align: center;
     font-size: 100%;
-    width: 700px;
+    width: 600px;
 }
 
 #inputDiv{
@@ -16,6 +28,7 @@
 }
 
 #buttonSend {
+    margin-top: 30px ;
     top: 20px;
     font-size: 100%;
 }
