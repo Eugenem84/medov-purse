@@ -29,12 +29,20 @@ mainDiv.addEventListener('click' , function (event) {
                     displayResponse(response)
                 } else {
                     console.error('Произошла ошибка при выполнении запроса.');
+                    //пока не знаю как проверить участок кода
+                    let responseDiv = document.getElementById('response')
+                    let redirectionMessage = document.createElement('div')
+                    redirectionMessage.id = "redirectionMessage"
+                    redirectionMessage.innerHTML = "redirection to: "
                 }
             }
         };
 
         function displayResponse (result) {
+            //получаем окно вывода
             let responseDiv = document.getElementById('response')
+            // очищаем окно вывода
+            responseDiv.innerHTML = ""
             for (let i = 0; i < result.length; i++) {
                 let redirectionMessage = document.createElement('div')
                 redirectionMessage.id = "redirectionMessage"
