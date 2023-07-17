@@ -34,12 +34,18 @@
 }
 
 #response {
+    display: block;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
     font-size: 130%;
-    border: black;
+    border: black solid 1px;
     text-align: left;
     color: black;
-    width: 800px;
-    height: 50px;
+    width: 80%;
+    height: 90%;
+
 }
 
 .menu {
@@ -73,4 +79,12 @@
     width: 700px;
     height: 700px;
     border: black solid 2px;
+}
+
+.newURLDiv {
+    font-size: 110%;
+    background-color: #b2b2b2;
+    height: auto;
+    width: auto;
+    margin: 10px;
 }

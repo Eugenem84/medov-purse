@@ -25,7 +25,6 @@ mainDiv.addEventListener('click' , function (event) {
                 if (xhr.status === 200) {
                     // Получаем ответ от сервера
                     const response = JSON.parse(xhr.responseText);
-                    //document.getElementById('response').innerHTML = response;
                     console.log("RESPONSE:  \n", response);
                     displayResponse(response)
                 } else {
@@ -35,9 +34,32 @@ mainDiv.addEventListener('click' , function (event) {
         };
 
         function displayResponse (result) {
-            result.forEach(function (element) {
-                document.getElementById("response").innerHTML += element + "<br>";
-            })
+            let responseDiv = document.getElementById('response')
+            let redirectionMessage = document.createElement('div')
+            redirectionMessage.id = "redirectionMessage"
+            redirectionMessage.innerHTML = "redirection to: "
+            for (let i = 0; i < result.length; i++) {
+                //console.log(redirectionMessage)
+                //console.log(result[i])
+                //вставляем сообщение
+                //responseDiv.appendChild(redirectionMessage)
+                // создаем ипут для ссылки
+                let newURLDiv = document.createElement('input')
+                // обявляем класс для инпута
+                newURLDiv.className = 'newURLDiv';
+                // вставляем инпут в див response
+                responseDiv.appendChild(newURLDiv);
+                //responseDiv.innerHTML = "redirection to: ";
+                // вставляем result в ипут
+                newURLDiv.value = result[i];
+             //   responseDiv.appendChild(newURLDiv);
+            }
+            // result.forEach(function (element) {
+            //     let mainDiv = document.getElementById("response")
+            //     let urlNewDiv = document.createElement("div")
+            //
+            //     document.getElementById("response").innerHTML += element + "<br>";
+            // })
         }
 
         //Отправляем запрос с данными

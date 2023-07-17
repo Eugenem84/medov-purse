@@ -3,7 +3,7 @@
      <label for="input"></label><br>
      <input type="text" id="input">
      <br>
-     <button id="buttonSend">check this</button>
+     <button id="buttonSend">check this link</button>
      <br>
  </div>
  <div id="response"></div>
