@@ -4,6 +4,10 @@
 const purseLink = document.getElementById('purseLink');
 const mainDiv = document.getElementById('main');
 
+document.addEventListener("DOMContentLoaded", function () {
+    loadContent('purse_client.php');
+})
+
 //функция печати сообщения в диве с ответом
 function DisplayMessage (message) {
     let responseDiv = document.getElementById('response')
