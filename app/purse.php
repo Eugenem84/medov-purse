@@ -1,5 +1,4 @@
 <?php
-//echo "ok \n" . "<br>";
 $resURLs = [];
 
 function answerURL ($answerString) {
@@ -68,12 +67,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-//if (!empty($resURLs)) {
-//   answerURL($resURLs);
-//} else if (!empty($resURLs) && $resURLs[0] === $message) {
-//    answerMessage("Link is not redirected");
-//}
 
-//if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-//    answerMessage("POST is waiting\n");
-//}

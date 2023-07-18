@@ -9,7 +9,7 @@
     <div id="header"> - SOME NAME SITE - </div>
     <div class="menu">
             <a id="purseLink" href="#" onclick="loadContent('purse_client.php');">Purse link content hear</a>
-            <a id="checkIpLink" href="#" onclick="loadContent('check_ip.php');"> Check ip content hear</a>
+            <a id="checkIpLink" href="#" onclick="loadContent('check_ip_client.php');"> Check ip content hear</a>
     </div>
     <div id="main">
         <!-- php loads their -->
